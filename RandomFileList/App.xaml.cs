@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Prism.Unity.Windows;
+using RandomFileList.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -20,7 +23,7 @@ namespace RandomFileList
     /// <summary>
     /// 既定の Application クラスを補完するアプリケーション固有の動作を提供します。
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : PrismUnityApplication
     {
         /// <summary>
         /// 単一アプリケーション オブジェクトを初期化します。これは、実行される作成したコードの
@@ -31,6 +34,13 @@ namespace RandomFileList
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
+        {
+            this.NavigationService.Navigate("Main", null);
+            return Task.CompletedTask;
+        }
+
 
         /// <summary>
         /// アプリケーションがエンド ユーザーによって正常に起動されたときに呼び出されます。他のエントリ ポイントは、
