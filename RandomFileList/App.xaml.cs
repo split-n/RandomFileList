@@ -40,22 +40,5 @@ namespace RandomFileList
             return Task.CompletedTask;
         }
 
-
-        /// <summary>
-        /// アプリケーションがエンド ユーザーによって正常に起動されたときに呼び出されます。他のエントリ ポイントは、
-        /// アプリケーションが特定のファイルを開くために起動されたときなどに使用されます。
-        /// </summary>
-        /// <param name="e">起動の要求とプロセスの詳細を表示します。</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {
-            base.OnLaunched(e);
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
-        }
-
     }
 }

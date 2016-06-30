@@ -7,9 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvm="using:Prism.Windows.Mvvm"
     mvvm:ViewModelLocator.AutoWireViewModel="True"
+    d:DataContext="{d:DesignData Source=MainPage.json}"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox Text="{Binding Text}" Height="100" Width="300"/>
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="OpenDirectoryButton" Click="OpenDirectoryButton_Click">Open Directory</Button>
+        <Button Command="{Binding LoadFilesCommand}" >Load Files</Button>
+        <ListView ItemsSource="{Binding RandomFiles}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel x:Name="FileItem" Orientation="Vertical" CanDrag="True" DragStarting="FileItem_DragStarting"  Background="#FFB8CFFF" >
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </Page>
