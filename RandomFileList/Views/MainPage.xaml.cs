@@ -37,7 +37,7 @@ namespace RandomFileList.Views
             var fp = new FolderPicker();
             fp.FileTypeFilter.Add("*");
             var folder = await fp.PickSingleFolderAsync();
-            ViewModel.LoadFolder(folder);
+            await ViewModel.LoadFolder(folder);
         }
 
         private void OnDragItemStarting(object sender, DragItemsStartingEventArgs e)

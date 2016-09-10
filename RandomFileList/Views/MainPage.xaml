@@ -11,9 +11,18 @@
     mc:Ignorable="d">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="OpenDirectoryButton" Click="OpenDirectoryButton_Click">Open Directory</Button>
-        <Button Command="{Binding LoadFilesCommand}" >Load Files</Button>
-        <ListView ItemsSource="{Binding RandomFiles}" DragItemsStarting="OnDragItemStarting" CanDragItems="True">
+        <StackPanel Orientation="Horizontal">
+            <Button Click="OpenDirectoryButton_Click">Open Directory</Button>
+            <TextBlock Text="{Binding FolderPath}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+            <TextBlock Text="Max" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding MaxFiles, Mode=TwoWay}"></TextBox>
+            <TextBlock Text="Regex" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding FileNameRegex, Mode=TwoWay}" Width="120"></TextBox>
+            <Button Command="{Binding SearchFilesCommand}" >Search</Button>
+        </StackPanel>
+        <ListView ItemsSource="{Binding FileList}" DragItemsStarting="OnDragItemStarting" CanDragItems="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel x:Name="FileItem" Orientation="Vertical">
