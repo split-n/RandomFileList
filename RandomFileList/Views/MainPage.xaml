@@ -10,19 +10,24 @@
     d:DataContext="{d:DesignData Source=MainPage.json}"
     mc:Ignorable="d">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Horizontal">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Click="OpenDirectoryButton_Click">Open Directory</Button>
             <TextBlock Text="{Binding FolderPath}"></TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Visible">
             <TextBlock Text="Max" VerticalAlignment="Center"/>
             <TextBox Text="{Binding MaxFiles, Mode=TwoWay}"></TextBox>
             <TextBlock Text="Regex" VerticalAlignment="Center"/>
-            <TextBox Text="{Binding FileNameRegex, Mode=TwoWay}" Width="120"></TextBox>
+            <TextBox Text="{Binding FileNameRegex, Mode=TwoWay}" Width="240"></TextBox>
             <Button Command="{Binding SearchFilesCommand}" >Search</Button>
         </StackPanel>
-        <ListView ItemsSource="{Binding FileList}" DragItemsStarting="OnDragItemStarting" CanDragItems="True">
+        <ListView Grid.Row="2" ItemsSource="{Binding FileList}" DragItemsStarting="OnDragItemStarting" CanDragItems="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel x:Name="FileItem" Orientation="Vertical">
@@ -31,5 +36,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackPanel>
+    </Grid>
 </Page>

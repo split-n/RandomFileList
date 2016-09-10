@@ -1,6 +1,9 @@
 ﻿{
+  "FolderPath": "C:\\Path", 
+  "MaxFiles": 100,
+  "FileNameRegex": "\\.jpg$",
   "FileList": [
     { "Name": "aaa" },
-	  { "Name": "bbb" }
-  ] 
+    { "Name": "bbb" }
+  ]
 }
