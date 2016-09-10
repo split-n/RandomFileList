@@ -40,15 +40,14 @@ namespace RandomFileList.Views
             ViewModel.LoadFolder(folder);
         }
 
-        private void FileItem_DragStarting(UIElement sender, DragStartingEventArgs args)
+        private void OnDragItemStarting(object sender, DragItemsStartingEventArgs e)
         {
-            var file = (sender as FrameworkElement)?.DataContext as StorageFile;
-
-            if (file != null)
+            var file = e.Items[0] as StorageFile;
+            if(file != null)
             {
-                args.DragUI.SetContentFromDataPackage();
-                args.Data.SetStorageItems(new[] { file });
+                e.Data.SetStorageItems(new[] { file });
             }
+
         }
     }
 }

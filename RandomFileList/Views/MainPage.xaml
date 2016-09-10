@@ -13,17 +13,11 @@
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button x:Name="OpenDirectoryButton" Click="OpenDirectoryButton_Click">Open Directory</Button>
         <Button Command="{Binding LoadFilesCommand}" >Load Files</Button>
-        <ListView ItemsSource="{Binding RandomFiles}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
+        <ListView ItemsSource="{Binding RandomFiles}" DragItemsStarting="OnDragItemStarting" CanDragItems="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel x:Name="FileItem" Orientation="Vertical" CanDrag="True" DragStarting="FileItem_DragStarting"  Background="#FFB8CFFF" >
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    <StackPanel x:Name="FileItem" Orientation="Vertical">
+                        <TextBlock Text="{Binding Name}" FontSize="17"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
