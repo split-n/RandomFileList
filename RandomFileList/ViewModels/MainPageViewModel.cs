@@ -44,19 +44,19 @@ namespace RandomFileList.ViewModels
 
         public MainPageViewModel()
         {
-            SearchFilesCommand = new DelegateCommand(async () => await SearchFiles(), () => _folder != null);
+            SearchFilesCommand = new DelegateCommand(SearchFiles, () => _folder != null);
         }
 
         public async Task LoadFolder(StorageFolder folder)
         {
             _folder = folder;
-            OnPropertyChanged("FolderPath");
+            OnPropertyChanged(nameof(FolderPath));
             _files = await _folder.GetFilesAsync();
             SearchFilesCommand.RaiseCanExecuteChanged();
-
+            SearchFiles();
         }
 
-        private async Task SearchFiles()
+        private void SearchFiles()
         {
             if (_files == null) return;
 
